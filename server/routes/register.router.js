@@ -6,7 +6,7 @@ var encryptLib = require('../modules/encryption');
 
 // Handles request for HTML file
 router.get('/', function(req, res, next) {
-  console.log('get /register route');
+  // console.log('get /register route');
   res.sendFile(path.resolve(__dirname, '../public/views/templates/register.html'));
 });
 
@@ -18,7 +18,7 @@ router.post('/', function(req, res, next) {
     username: req.body.username,
     password: encryptLib.encryptPassword(req.body.password)
   };
-  console.log('new user:', saveUser);
+  // console.log('new user:', saveUser);
 
   pool.connect(function(err, client, done) {
     if(err) {

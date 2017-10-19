@@ -78,3 +78,13 @@ li a:hover {
   text-decoration: underline;
   color: #eee;
 }
+/*new code*/
+.listBox{
+  border: 2px solid black;
+  margin: 5px;
+  text-align: center;
+}
+
+.title {
+  text-decoration: underline;
+}

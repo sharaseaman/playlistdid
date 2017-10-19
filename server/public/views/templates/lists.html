@@ -1,0 +1,15 @@
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
+  <section id="getLists">
+
+    <h1>LIST PAGE</h1>
+    <div class="listBox" ng-repeat="list in lc.listsToDisplay">
+        <b>{{list.title}}</b>
+        
+      <div ng-repeat="item in list.items">
+       <input type="checkbox"> {{item}}
+      </div>
+   
+    </div>
+  </section>
+</div>
