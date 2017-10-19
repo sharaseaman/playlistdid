@@ -1,12 +1,13 @@
 myApp.service('UserService', function ($http, $location) {
-  console.log('UserService Loaded');
+  // console.log('UserService Loaded');
   var self = this;
 
   self.userObject = {};
   self.lists = {};
+  self.create = {};
 
   self.getuser = function () {
-    console.log('UserService -- getuser');
+    // console.log('UserService -- getuser');
     $http({
       method: 'GET',
       url: '/user',
@@ -24,26 +25,40 @@ myApp.service('UserService', function ($http, $location) {
   };
   //get lists in db
   self.getLists = function () {
-    console.log('in getLists function on controller');
+    // console.log('in getLists function on controller');
     $http({
       method: 'GET',
       url: '/lists',
     }).then(function (response) {
-      console.log('Response:', response.data);
+      // console.log('Response:', response.data);
       self.lists = response.data;
     });
   }
 
-  // self.getItems = function () {
-  //   console.log('in getItems function on controller');
-  //   $http({
-  //     method: 'GET',
-  //     url: '/items',
-  //   }).then(function (response) {
-  //     console.log('Response:', response.data);
-  //     self.items = response.data;
-  //   });
-  // }
+  self.completeTask = function(item){
+    console.log('completeTask function called', item);
+    $http({
+      method: 'PUT',
+      url: '/lists',
+      data: {data: item}
+    }).then(function(response){
+      console.log('second complete log');
+    })
+    
+  }
+  
+
+  self.createList = function () {
+    console.log('in createList function on user.service');
+    $http({
+      method: 'GET',
+      url: '/create',
+    }).then(function (response) {
+      console.log('Response:', response.data);
+      self.create = response.data;
+    });
+  }
+
 
   //logout 
   self.logout = function () {

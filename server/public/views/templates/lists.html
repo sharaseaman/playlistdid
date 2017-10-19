@@ -7,7 +7,7 @@
         <b>{{list.title}}</b>
         
       <div ng-repeat="item in list.items">
-       <input type="checkbox"> {{item}}
+       <input type="checkbox" ng-click="lc.completeTask(item)"> {{item}} </input>
       </div>
    
     </div>

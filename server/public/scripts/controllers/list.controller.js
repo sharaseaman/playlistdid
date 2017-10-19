@@ -15,5 +15,13 @@ myApp.controller('ListController', function($http, $location, UserService) {
         })
     }
 
+    vm.completeTask = function(item){
+    UserService.completeTask(item);
+    console.log('click controller working')
+    }
+
+
+
+
     // UserService.getItems();
 });

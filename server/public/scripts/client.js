@@ -35,6 +35,10 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/lists.html',
       controller: 'ListController as lc'
       })
+      .when('/create',{
+        templateUrl: '/views/templates/create.html',
+        controller: 'CreateController as cc'
+        })
     .otherwise({
       redirectTo: 'home'
     });

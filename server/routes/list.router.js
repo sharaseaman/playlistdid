@@ -24,4 +24,33 @@ router.get('/',function(req,res){
     })
 });
 
+
+router.put('/', function (req, res) {
+    pool.connect(function (connectionError, client, done) {
+        console.log('req.body ->', req.body.data);
+        var flower = req.body.data;
+
+        if (connectionError) {
+            console.log(connectionError);
+            res.sendStatus(501);
+        } else {
+            var pQuery = "UPDATE items SET complete=true WHERE item=$1";
+            console.log('pQuery', pQuery);
+            
+            var valueArray = [flower];
+            client.query(pQuery, valueArray, function (queryError, resultObj) {
+                done();
+                if (queryError) {
+                    console.log(queryError);
+                    res.sendStatus(500);
+                } else {
+                    console.log('yaaaaaay');
+                    res.sendStatus(202);
+                }
+            });
+        }
+    })
+
+
+});//end put route
 module.exports = router;
