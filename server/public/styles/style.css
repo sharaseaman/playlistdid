@@ -8,10 +8,11 @@ body, html {
 .instructions .container h1 {
   font-size: 32px;
   font-weight: 600;
+  text-align: center;
 }
 
 .instructions {
-  background-color: #333333;
+  background-color: #7352e9;
   color: #DDDDDD;
   padding: 15px;
 }
@@ -49,7 +50,7 @@ body, html {
 }
 
 .navbar {
-  background-color: #333333;
+  background-color: #7352e9;
   width: 100%;
   border-radius: 0px;
 }

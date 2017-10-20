@@ -11,16 +11,20 @@ myApp.controller('ListController', function($http, $location, UserService) {
         console.log(vm.listsToDisplay);
     });
 
-    vm.completeTask = function(object, index){
-        console.log(object, index);
+    vm.completeTask = function(object, done){
+        UserService.completeTask(object, done);
+        console.log('click controller working', object, done);
+        }
+
+    // vm.completeTask = function(object, index){
+    //     console.log(object, index);
         
-       console.log("here",vm.listsToDisplay.checkboxs[index]);
-       vm.listsToDisplay.checkboxs[index] = !vm.listsToDisplay.checkboxs[index];
-       console.log("there",vm.listsToDisplay.checkboxs[index]);
+    //    console.log("here",vm.listsToDisplay);
+    //    console.log("here",vm.listsToDisplay.items);
 
         // UserService.completeTask(object,complete);
         // console.log('click controller working', object,complete)
-    }
+    // }
     // for (var i = 0; i < lists.length; i++) {
     //     var items = lists[i].items;
     //     var completes = lists[i].checkboxs;
@@ -38,10 +42,7 @@ myApp.controller('ListController', function($http, $location, UserService) {
     //     })
     // }
 
-    // vm.completeTask = function(object){
-    // UserService.completeTask(object);
-    // console.log('click controller working')
-    // }
+    
     // console.log('list to display', vm.listsToDisplay);
 
 

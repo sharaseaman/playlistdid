@@ -27,8 +27,8 @@ router.get('/',function(req,res){
 
 router.put('/', function (req, res) {
     pool.connect(function (connectionError, client, done) {
-        console.log('req.body ->', req.body.data);
-        var flower = req.body.data;
+        console.log('req.body ->', req.body);
+        var flower = req.body;
 
         if (connectionError) {
             console.log(connectionError);
@@ -37,14 +37,14 @@ router.put('/', function (req, res) {
             var pQuery = "UPDATE items SET complete=$1 WHERE item=$2";
             console.log('pQuery', pQuery);
             
-            var valueArray = [flower.complete, flower.item];
+            var valueArray = [flower.complete, flower.data];
             client.query(pQuery, valueArray, function (queryError, resultObj) {
                 done();
                 if (queryError) {
                     console.log(queryError);
                     res.sendStatus(500);
                 } else {
-                    console.log('yaaaaaay');
+                    console.log('yaaaaaay', resultObj);
                     res.sendStatus(202);
                 }
             });
