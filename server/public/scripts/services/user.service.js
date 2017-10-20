@@ -25,26 +25,27 @@ myApp.service('UserService', function ($http, $location) {
   };
   //get lists in db
   self.getLists = function () {
-    // console.log('in getLists function on controller');
-    $http({
+     console.log('in getLists function on service');
+    return $http({
       method: 'GET',
       url: '/lists',
     }).then(function (response) {
-      // console.log('Response:', response.data);
+      console.log('Response:', response.data);
       self.lists = response.data;
     });
   }
 
-  self.completeTask = function(item){
-    console.log('completeTask function called', item);
+  self.completeTask = function(object, complete){
+    console.log('completeTask function called', object, complete);
     $http({
       method: 'PUT',
       url: '/lists',
-      data: {data: item}
+      data: {data: object, complete: complete}
     }).then(function(response){
+      console.log('what is object', object);
+      
       console.log('second complete log');
     })
-    
   }
   
 

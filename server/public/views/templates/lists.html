@@ -1,15 +1,19 @@
-<div ng-include="'views/partials/nav.html'"></div>
+<div ng-include="'views/partials/nav.html'" ng-init="lc.getLists()"></div>
+
 <div class="container">
   <section id="getLists">
 
     <h1>LIST PAGE</h1>
     <div class="listBox" ng-repeat="list in lc.listsToDisplay">
-        <b>{{list.title}}</b>
-        
-      <div ng-repeat="item in list.items">
-       <input type="checkbox" ng-click="lc.completeTask(item)"> {{item}} </input>
+      <b>{{list.name}}</b>
+      <div ng-repeat="items in list.items">
+          {{items}}
+        <input type="checkbox" ng-model="list.checkboxs[ $index ]" ng-click="lc.completeTask(items, $index)" ng-checked="list.checkboxs[ $index ]"> 
+        <!-- {{object}} -->
       </div>
-   
+
     </div>
   </section>
 </div>
+
+<!-- 'item.complete' -->
