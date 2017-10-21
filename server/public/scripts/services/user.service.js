@@ -4,7 +4,7 @@ myApp.service('UserService', function ($http, $location) {
 
   self.userObject = {};
   self.lists = {};
-  self.create = {};
+  self.allLists = {};
 
   self.getuser = function () {
     // console.log('UserService -- getuser');
@@ -15,6 +15,7 @@ myApp.service('UserService', function ($http, $location) {
       if (response.data.username) {
         // user has a curret session on the server
         self.userObject.userName = response.data.username;
+        self.userObject.id = response.data.id;
         // console.log('UserService -- getuser -- User Data: ', self.userObject.userName);
       } else {
         // console.log('UserService -- getuser -- failure', response);
@@ -23,7 +24,7 @@ myApp.service('UserService', function ($http, $location) {
       }
     });
   };
-  //get lists in db
+  //get lists in db, deleted user in below param, deleted user.id in url field
   self.getLists = function () {
      console.log('in getLists function on service');
     return $http({
@@ -34,6 +35,17 @@ myApp.service('UserService', function ($http, $location) {
       self.lists = response.data;
     });
   }
+
+  self.getAllLists = function () {
+    console.log('in getALLLists function on service');
+   return $http({
+     method: 'GET',
+     url: '/user/allLists',
+   }).then(function (response) {
+     console.log('Response:', response.data);
+     self.allLists = response.data;
+   });
+ }
 
   self.completeTask = function(object, complete){
     console.log('completeTask function called', object, complete);
@@ -47,21 +59,8 @@ myApp.service('UserService', function ($http, $location) {
       console.log('second complete log');
     })
   }
-  
-
-  self.createList = function () {
-    console.log('in createList function on user.service');
-    $http({
-      method: 'GET',
-      url: '/create',
-    }).then(function (response) {
-      console.log('Response:', response.data);
-      self.create = response.data;
-    });
-  }
 
 
-  //logout 
   self.logout = function () {
     console.log('UserService -- logout');
     $http({

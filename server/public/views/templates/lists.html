@@ -6,7 +6,7 @@
     <h1>LIST PAGE</h1>
     <div class="listBox" ng-repeat="list in lc.listsToDisplay">
       <b>{{list.name}}</b>
-      <div ng-repeat="items in list.items">
+      <div ng-repeat="items in list.item">
           {{items}}
         <input type="checkbox" ng-model="list.checkboxs[ $index ]" ng-click="lc.completeTask(items, list.checkboxs[ $index ])" ng-checked="list.checkboxs[ $index ]"> 
         <!-- {{object}} -->

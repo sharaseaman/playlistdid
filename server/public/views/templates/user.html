@@ -1,9 +1,22 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<div class="container">
+<div class="container" ng-init=uc.getAllLists()>
 
-    <h1 id="welcome" class="lead">Welcome To<p> <br>PLAY<br>list<br>DID!</h1>
-    <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
+    <h1 id="welcome" class="lead">What Do You Want To Do?</h1>
+   
+ <!-- Get all lists        -->
+ <section id="getAllLists">
+        
+            <h3>Inspiration...</h3>
+            <div class="listBox" ng-repeat="list in uc.allListsToDisplay">
+              <b>{{list.name}}</b>
+              <div ng-repeat="items in list.item">
+                  {{items}}
+                <!-- <button class="addListButton" ng-click="uc.addThisList()">  -->
+              </div>
+        
+            </div>
+          </section>
     
-
-
 </div>
+
+
