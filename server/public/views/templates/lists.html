@@ -8,7 +8,7 @@
       <b>{{list.name}}</b>
       <div ng-repeat="items in list.item">
           {{items}}
-        <input type="checkbox" ng-model="list.checkboxs[ $index ]" ng-click="lc.completeTask(items, list.checkboxs[ $index ])" ng-checked="list.checkboxs[ $index ]"> 
+        <input type="checkbox" ng-model="list.checkbox[ $index ]" ng-click="lc.completeTask(items, list.checkbox[ $index ])" ng-checked="list.checkbox[ $index ]"> 
         <!-- {{object}} -->
       </div>
 
