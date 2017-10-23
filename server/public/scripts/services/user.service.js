@@ -5,6 +5,7 @@ myApp.service('UserService', function ($http, $location) {
   self.userObject = {};
   self.lists = {};
   self.allLists = {};
+  self.newList = {};
 
   self.getuser = function () {
     // console.log('UserService -- getuser');
@@ -24,7 +25,7 @@ myApp.service('UserService', function ($http, $location) {
       }
     });
   };
-  //get lists in db, deleted user in below param, deleted user.id in url field
+
   self.getLists = function () {
      console.log('in getLists function on service');
     return $http({
@@ -60,6 +61,18 @@ myApp.service('UserService', function ($http, $location) {
     })
   }
 
+  self.newList = function (inputName, inputItem) {
+    console.log('new List made it to service',inputName, inputItem);
+  
+    $http({
+      method: 'POST',
+      url: '/create',
+      data: {name: inputName,
+            item: inputItem}
+      }).then(function(response){
+      console.log('newList success');
+    });
+  }
 
   self.logout = function () {
     console.log('UserService -- logout');

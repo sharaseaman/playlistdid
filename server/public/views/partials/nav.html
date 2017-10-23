@@ -1,15 +1,19 @@
-<div class="navbar">
-  <div class="container">
-    <ul>
+<div class="block">
 
-        <li><a href="#/user">Home</a></li>
-        
-        <li><a href="#/lists">My Lists</a></li>
-        
-      <!-- <li><a href="#/info">Info Page</a></li> -->
-      <li><a href="#/create">Create List</a></li>
-      <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
-      
-    </ul>
-  </div>
-</div>
+  <nav class="nav">
+    <div class="nav-left">
+     
+        <a href="#/user" class="nav-item">Home</a>
+
+       <a href="#/lists" class="nav-item">My Lists</a>
+        <!-- <li><a href="#/info">Info Page</a></li> -->
+        <a href="#/create" class="nav-item">Create List</a>
+    </div>
+
+    <div class="nav-center">
+        <button class="button is-light is small nav-item" ng-click="uc.userService.logout()">Log Out</button>
+    </div>
+  
+  </nav>
+
+</div> <!-- end main block div -->

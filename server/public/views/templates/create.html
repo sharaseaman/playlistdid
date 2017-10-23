@@ -1,15 +1,29 @@
-<!-- <div ng-include="'views/partials/nav.html'"></div>
-<div class="container">
-    <p> Create A List </p>
-<div class="inputField">
+<div ng-include="'views/partials/nav.html'" ng-init=uc.getAllLists()></div>
 
-    <input type="text" placeholder="List Name" ng-model="cc.newList.listNameIn">
-    <input type="text" placeholder="Subject" ng-model="cc.newList.subjectIn">
-    <input type="text" placeholder="Location" ng-model="cc.newList.location">
-    <input type="text" placeholder="Radius" ng-model="cc.newList.location">
+<h1 id="welcome" class="title">Create New List</h1>
 
-    <button id="addList" ng-click="cc.searchList()">Search</button>
+<div class="block" id="formLayout">
+    <form ng-submit="cc.newList()">
+        <div class="field">
+            <label class="label">List Title</label>
+            <input type="text" placeholder="List Name" ng-model="cc.newList.listNameIn">
+        </div>
+
+        <div class="field">
+            <label class="label">List Item:</label>
+            <input type="text" placeholder="Subject" ng-model="cc.newList.itemIn">
+            <input type="text" placeholder="Subject" ng-model="cc.newList.itemIn">
+        <input class="btn btn-default" type="submit" name="Add Items" value="Add Items" />
+            
+
+
+
+        </div>
+
+
+    <input class="btn btn-default" type="submit" name="submit" value="Add List" />
+              
+
+
+    </form>
 </div>
-
-
-</div> -->

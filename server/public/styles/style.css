@@ -87,5 +87,17 @@ li a:hover {
 }
 
 .title {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  text-align: center;
+  
 }
+#logo{
+  text-align: center;
+}
+
+#formLayout{
+  border: 3px solid black;
+  margin-left: 35px;
+  margin-right:35px;
+  padding: 10px;
+} 

@@ -1,19 +1,27 @@
 <div ng-include="'views/partials/nav.html'" ng-init="lc.getLists()"></div>
 
-<div class="container">
-  <section id="getLists">
+<h1 id="welcome" class="title">My Lists</h1>
+<hr />
+  <!-- Get My lists        -->
+<div class="block" id="getMyLists">
+    <div class="columns">        
+  <div class="listBox column" ng-repeat="list in lc.listsToDisplay">
+   
+   
+    <b>{{list.name}}</b>
+    <div ng-repeat="items in list.item">
+      <!-- {{items}} -->
+      <!-- <button ng-model="list.checkbox[ $index ]" ng-click="lc.completeTask(items, list.checkbox[ $index ])" ng-checked="list.checkbox[ $index ]">
+          <i class="material-icons">fiber_manual_record</i>
+      </button> -->
+      {{items}}
 
-    <h1>LIST PAGE</h1>
-    <div class="listBox" ng-repeat="list in lc.listsToDisplay">
-      <b>{{list.name}}</b>
-      <div ng-repeat="items in list.item">
-          {{items}}
-        <input type="checkbox" ng-model="list.checkbox[ $index ]" ng-click="lc.completeTask(items, list.checkbox[ $index ])" ng-checked="list.checkbox[ $index ]"> 
-        <!-- {{object}} -->
-      </div>
 
+      <input type="checkbox" ng-model="list.checkbox[ $index ]" ng-click="lc.completeTask(items, list.checkbox[ $index ])" ng-checked="list.checkbox[ $index ]">
+      <!-- {{object}} -->
     </div>
-  </section>
+
+  </div>
 </div>
 
 <!-- 'item.complete' -->
