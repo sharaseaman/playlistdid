@@ -1,20 +1,25 @@
-myApp.controller('CreateController', function($http, $location, UserService) {
-    console.log('CreateController created');
-    var vm = this;
+myApp.controller('CreateController', function ($http, $location, UserService) {
+  console.log('CreateController created');
+  var vm = this;
 
   vm.newList = UserService.newList;
 
-  
+  vm.itemsArray = [];
 
-  vm.newList = function(){
+  vm.newList = function () {
     console.log('newList controller function');
-    UserService.newList(vm.newList.listNameIn,vm.newList.itemIn);
+    UserService.newList(vm.newList.listNameIn, vm.itemsArray);
     console.log('listNameIn', vm.newList.listNameIn);
     console.log('listNameIn', vm.newList.itemIn);
 
-    
   }
 
-
-
-  });
+  vm.addItems = function () {
+    var newItem = {
+      item: vm.newList.itemIn
+    }
+    vm.itemsArray.push(newItem);
+    console.log('newItem', vm.itemsArray);
+    vm.newList.itemIn = ''
+  };
+});

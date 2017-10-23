@@ -1,20 +1,24 @@
 <div ng-include="'views/partials/nav.html'" ng-init=uc.getAllLists()></div>
 
-  <h1 id="welcome" class="title">Find Your Adventure</h1>
+<h1 id="welcome" class="title">Find Your Adventure</h1>
 <hr />
-  <!-- Get all lists        -->
-  <div class="block" id="getAllLists">
-      <div class="columns">
-    <div class="listBox column" ng-repeat="list in uc.allListsToDisplay">
-      <!-- ng-click in div above with function(list) -->
-      <!-- that function will go to controller to service, POST to user items table -->
+<!-- Get all lists     
+   -->
+<div class="block" id="getAllLists">
+  <div class="columns listBox">
+    <div class="column label" ng-repeat="list in uc.allListsToDisplay" ng-mouseenter="list.show = true" ng-mouseleave="list.show = false"
+    ng-click="uc.addThisList()">
+
       <b>{{list.name}}</b>
-      <i class="material-icons" size="40">arrow_drop_down</i>
-      <div ng-repeat="items in list.item">
-        {{items}}
-        <!-- <button class="addListButton" ng-click="uc.addThisList()">  -->
+
+      <!-- <i class="material-icons" size="40">arrow_drop_down</i> -->
+      <div id="lists">
+        <div ng-if="list.show" ng-repeat="items in list.item">
+          <div>
+            {{items}}
+          </div>
+        </div>
       </div>
     </div>
-    </div> <!--main columns with s end-->
-  </div> <!--main div block end-->
-
+  </div><!--main columns with s end-->
+</div><!--main div block end-->

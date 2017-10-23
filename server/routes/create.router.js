@@ -4,13 +4,13 @@ var pool = require('../modules/pool.js');
 var request = require('request');
 
 router.post('/', function (req, res, next) {
-    console.log('req.body',req.body);
+    // console.log('req.body',req.body);
     
     var newList = {
         name: req.body.name,
-        item: [req.body.item]
+        item: req.body.item
     };
-    console.log('router newList', newList.name);
+    console.log('router newItem', newList);
     pool.connect(function (err, client, done) {
         if (err) {
             console.log("Error connecting: ", err);

@@ -68,7 +68,7 @@ myApp.service('UserService', function ($http, $location) {
       method: 'POST',
       url: '/create',
       data: {name: inputName,
-            item: inputItem}
+            item: [inputItem]}
       }).then(function(response){
       console.log('newList success');
     });
@@ -85,3 +85,8 @@ myApp.service('UserService', function ($http, $location) {
     });
   };
 });
+
+self.addThisList = function(){
+  console.log('addThisList worked in service');
+  
+}

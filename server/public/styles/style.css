@@ -80,11 +80,14 @@ li a:hover {
   color: #eee;
 }
 /*new code*/
-.listBox{
+/* .listBox{
   border: 2px solid black;
   margin: 5px;
   text-align: center;
-}
+  /* text-decoration: underline;
+ } */
+  
+
 
 .title {
   /* text-decoration: underline; */
@@ -101,3 +104,16 @@ li a:hover {
   margin-right:35px;
   padding: 10px;
 } 
+#getAllLists{
+  margin:20px;
+}
+
+#lists{
+  border: 1px solid black;
+}
+
+.label{
+  border-top: 1px black;
+  border-right: 1px black;
+  border-left: 1px black;
+}
