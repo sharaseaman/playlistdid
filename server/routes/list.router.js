@@ -12,10 +12,10 @@ router.get('/', function (req, res) {
                 console.log(connectionError);
                 res.sendStatus(500);
             } else {
-                var queryString = 'SELECT list.name, array_agg(items.item)AS item, array_agg(user_items.complete)AS checkbox FROM list RIGHT JOIN items ON items.list_id=list.id LEFT JOIN user_items ON user_items.items_id=items.id WHERE list.users_id=$1 GROUP BY list.name;';
-                var values = [req.user.id];
+                var queryString = 'SELECT * FROM  items INNER JOIN list ON items.list_id=list.list_id INNER JOIN users_lists on list.list_id=users_lists.list_id;';
+                // var values = [req.user.id];
 
-                client.query(queryString, values, function (queryError, resultObj) {
+                client.query(queryString, function (queryError, resultObj) {
                     done();
                     if (queryError) {
                         console.log(queryError);
@@ -23,6 +23,8 @@ router.get('/', function (req, res) {
                     } else {
                         console.log('list router resultObj.rows', resultObj.rows);
                         res.send(resultObj.rows);
+                        console.log('getMyList return from db', resultObj.rows);
+                        
                     }
                 })
             }

@@ -7,12 +7,13 @@ myApp.controller('ListController', function($http, $location, UserService) {
 
     vm.userObject = UserService.userObject;    
 
-    // UserService.getLists().then(function(){
-    //     vm.listsToDisplay = UserService.lists;  
-    //     // vm.user.id  = vm.userObject.id;        
-    //     console.log(vm.listsToDisplay);
-    //     // console.log("what is this?",vm.user.id);
-    // });
+    //in progress // get my saved lists/items/boolean
+    UserService.getMyLists().then(function(){
+        vm.listsToDisplay = UserService.lists;  
+        // vm.user.id  = vm.userObject.id;        
+        console.log(vm.listsToDisplay);
+        // console.log("what is this?",vm.user.id);
+    });
 
     vm.completeTask = function(object, done){
         UserService.completeTask(object, done);
