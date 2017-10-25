@@ -6,6 +6,20 @@ myApp.controller('CreateController', function ($http, $location, UserService) {
 
   vm.itemsArray = [];
 
+  vm.toggleTesty = function(){
+    if( vm.activeList ){
+        console.log( 'found a testy' );
+        vm.activeList = '';
+    }
+    else{
+        vm.activeList = {
+            user_id: 3,
+            title: 'Beaches',
+            items: []
+        }
+    }
+}
+
   vm.newList = function () {
     console.log('newList controller function');
     UserService.newList(vm.newList.listNameIn, vm.itemsArray);

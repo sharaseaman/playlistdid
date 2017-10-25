@@ -1,24 +1,30 @@
-<div ng-include="'views/partials/nav.html'" ng-init=uc.getAllLists()></div>
+<!-- uc.getAllLists()  return all lists and their items-->
+<div ng-include="'views/partials/nav.html'" ng-init=uc.getAllListsNames()></div>
 
-<h1 id="welcome" class="title">Find Your Adventure</h1>
+<h1 id="welcome" class="title">Welcome {{uc.userObject.userName}}! Find Your Adventure</h1>
 <hr />
 <!-- Get all lists     
    -->
-<div class="block" id="getAllLists">
-  <div class="columns listBox">
-    <div class="column label" ng-repeat="list in uc.allListsToDisplay" ng-mouseenter="list.show = true" ng-mouseleave="list.show = false"
-    ng-click="uc.addThisList()">
+<div class="card is-fluid" id="getAllLists"ng-repeat="list in uc.allListsNames">
+  <header class="card-header select">
 
-      <b>{{list.name}}</b>
-
-      <!-- <i class="material-icons" size="40">arrow_drop_down</i> -->
-      <div id="lists">
-        <div ng-if="list.show" ng-repeat="items in list.item">
-          <div>
-            {{items}}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div><!--main columns with s end-->
-</div><!--main div block end-->
+    <span class="card-header-title">
+      <h1 id="titleList"><b>{{list.listname}}</b></h1>
+      <button ng-click="uc.getThisListItems(list.listname)">Get Items </button>
+      <!-- <i class="material-icons" aria-hidden="true">arrow_drop_down</i>  -->
+    </span>
+    <!-- <a href="#" class="card-header-icon" aria-label="more options"></a> -->
+  </header>
+  <div class="card-content">
+    <ul class="content" ng-repeat="item in uc.listItems" ng-if='list.list_id==item.list_id'>
+     <li>  {{item.itemname}} </li>
+    </ul>
+  </div>
+  <footer class="card-footer">
+    
+      <div class="card-footer-item is-left" ng-click="uc.addThisList(list.listname, list.item)">Save</div>
+  </footer>    
+</div>
+<!--main columns with s end-->
+</div>
+<!--main div block end-->

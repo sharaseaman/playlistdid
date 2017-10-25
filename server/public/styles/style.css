@@ -80,14 +80,15 @@ li a:hover {
   color: #eee;
 }
 /*new code*/
-/* .listBox{
+.listBox {
   border: 2px solid black;
   margin: 5px;
   text-align: center;
-  /* text-decoration: underline;
- } */
+ } 
   
-
+#titleList{
+  text-decoration: underline;
+}
 
 .title {
   /* text-decoration: underline; */

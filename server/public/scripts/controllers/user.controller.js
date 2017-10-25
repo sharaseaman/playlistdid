@@ -1,26 +1,45 @@
 myApp.controller('UserController', function($http, $location,UserService) {
   // console.log('UserController created');
   var vm = this;
-  vm.userService = UserService;
-  vm.userObject = UserService.userObject;
-
-  vm.addThisList = UserService.addThisList;
+  // vm.userObject = UserService.userObject;
+  console.log('vm.getThisListItems', vm.listItems);
   
-
   vm.showList = false;
 
-  UserService.getAllLists().then(function(){
-    vm.allListsToDisplay = UserService.allLists;  
-    // vm.user.id  = vm.userObject.id;        
-    console.log(vm.allListsToDisplay);
-    // console.log("what is this?",vm.user.id);
+  // Gets all List Names for homepage /all users
+  UserService.getAllListsNames().then(function(){
+    // console.log('UserService.allListsName',UserService.allListsName);  
+    vm.allListsNames = UserService.allListsName;  
 });
 
-vm.addThisList = function(){
-  console.log('add entire list button working');
-  // vm.getAllLists();
+
+  //Gets all List Items for homepage/ all users/inject listname
+  vm.getThisListItems = function(listName){
+    UserService.getThisListItems(listName).then( function(){
+      console.log(' UserService.listItems',  UserService.listItems);
+      vm.listItems = UserService.listItems;
+      
+    });
+    
+    // UserService.listItems;
+    // console.log('vm.getThisListItems', vm.listItems);
+    
+  
   }
 
+
+
+
+  vm.addThisList = function(addListName, addItems){
+    
+    // console.log('click controller working', addListName, addItems);
+
+    // var objectToSend = {name: addListName,
+    //                     items: addItems}
+    
+    UserService.addThisList(addListName,addItems);
+    //  console.log('sending objectToSend', objectToSend);
+  }
 
 
 });

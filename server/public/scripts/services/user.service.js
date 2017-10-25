@@ -4,8 +4,9 @@ myApp.service('UserService', function ($http, $location) {
 
   self.userObject = {};
   self.lists = {};
-  self.allLists = {};
+  self.allListsName = {};
   self.newList = {};
+  self.listItems = {}; //list of Items for getThisList Items
 
   self.getuser = function () {
     // console.log('UserService -- getuser');
@@ -17,7 +18,7 @@ myApp.service('UserService', function ($http, $location) {
         // user has a curret session on the server
         self.userObject.userName = response.data.username;
         self.userObject.id = response.data.id;
-        // console.log('UserService -- getuser -- User Data: ', self.userObject.userName);
+        //  console.log('UserService -- getuser -- User Data: ', self.userObject.userName);
       } else {
         // console.log('UserService -- getuser -- failure', response);
         // user has no session, bounce them back to the login page
@@ -26,28 +27,49 @@ myApp.service('UserService', function ($http, $location) {
     });
   };
 
-  self.getLists = function () {
-     console.log('in getLists function on service');
-    return $http({
-      method: 'GET',
-      url: '/lists',
-    }).then(function (response) {
-      console.log('Response:', response.data);
-      self.lists = response.data;
-    });
-  }
-
-  self.getAllLists = function () {
-    console.log('in getALLLists function on service');
+  // get all the list names for homepage
+  self.getAllListsNames = function () {
+    // console.log('in getALLLists function on service');
    return $http({
      method: 'GET',
-     url: '/user/allLists',
+     url: '/user/allListsName',
    }).then(function (response) {
-     console.log('Response:', response.data);
-     self.allLists = response.data;
+    //  console.log('Response:', response.data);
+     self.allListsName = response.data;
+    // console.log('response.data =', response.data);
+    //  console.log('self.allListsName', self.allListsName);
    });
  }
+//  get List items for homepage
+  self.getThisListItems = function(listName){
+    console.log('getListItems in service',listName);
+    return $http({
+      method: 'GET',
+      url: '/user/getThisListItems/'+ listName
+    }).then(function (response) {
+     //  console.log('Response:', response.data);
+      self.listItems = response.data;
+    //  console.log('response.data =', response.data);
+      console.log('self.listItems', self.listItems);
+    });
+  
+  }
+  });
 
+
+
+
+
+ self.getLists = function () {
+  console.log('in getLists function on service');
+ return $http({
+   method: 'GET',
+   url: '/lists',
+ }).then(function (response) {
+   console.log('Response:', response.data);
+   self.lists = response.data;
+ });
+}
   self.completeTask = function(object, complete){
     console.log('completeTask function called', object, complete);
     $http({
@@ -84,9 +106,16 @@ myApp.service('UserService', function ($http, $location) {
       $location.path('/home');
     });
   };
-});
 
-self.addThisList = function(){
-  console.log('addThisList worked in service');
-  
+
+// add list from home page to users page
+self.addThisList = function(addListName,addItems, addUserName){
+  console.log( 'addThisList worked in service',addListName, addItems);
+  $http({
+    method: 'POST',
+    url: '/user',
+    data: {name: addListName, item: addItems, userName: addUserName}
+  }).then(function(response){
+    console.log('i am here');
+  });
 }
