@@ -2,13 +2,11 @@ myApp.service('UserService', function ($http, $location) {
   // console.log('UserService Loaded');
   var self = this;
 
-  self.userObject = {}; //DONE
-  // self.lists = {};
+  self.userObject = {}; //DONE 
   self.allListsName = {}; //DONE
-  // self.newList = {};
   self.listItems = {}; //list of Items for getThisList Items //DONE
   self.myListsNames = {};
-
+  self.myListsItems = {};
 
   //DONE
   self.getuser = function () {
@@ -45,7 +43,7 @@ myApp.service('UserService', function ($http, $location) {
   }
   // DONE // get List items for homepage //user.router
   self.getThisListItems = function (listName) {
-    console.log('getListItems in service', listName);
+    console.log('get THIS ListItems in service', listName);
     return $http({
       method: 'GET',
       url: '/user/getThisListItems/' + listName
@@ -65,20 +63,22 @@ myApp.service('UserService', function ($http, $location) {
       url: '/lists/getMyListsNames',
     }).then(function (response) {
       self.myListsNames = response.data;
-      console.log('self.getMyListsNames', self.myListsNames);
+      // console.log('self.getMyListsNames', self.myListsNames);
     });
   }
 
 
   //change below to get items for the name of MyList
-  self.myListItems = function () {
-    console.log('in getLists function on service');
+  self.myListItems = function (myListName) {
+    // console.log('in myListItems function on service');
     return $http({
       method: 'GET',
-      url: '/lists',
+      url: '/lists/' + myListName
     }).then(function (response) {
-      // console.log('Response:', response.data);
-      self.lists = response.data;
+      console.log('Response:', response.data);
+      self.listItems = response.data;
+      
+      
     });
   }
 
@@ -124,7 +124,28 @@ myApp.service('UserService', function ($http, $location) {
       });
     });
   }
-
+  self.completeTask = function (object, complete) {
+    console.log('completeTask function called', object, complete);
+    $http({
+      method: 'PUT',
+      url: '/lists',
+      data: { data: object, complete: complete }
+    }).then(function (response) {
+      console.log('what is object', object);
+  
+      console.log('second complete log');
+    })
+  }
+  self.logout = function () {
+    console.log('UserService -- logout');
+    $http({
+      method: 'GET',
+      url: '/user/logout'
+    }).then(function (response) {
+      console.log('UserService -- logout -- logged out');
+      $location.path('/home');
+    });
+  };
 
 }); //end myapp 
 
@@ -133,31 +154,9 @@ myApp.service('UserService', function ($http, $location) {
 
 
 
-self.completeTask = function (object, complete) {
-  console.log('completeTask function called', object, complete);
-  $http({
-    method: 'PUT',
-    url: '/lists',
-    data: { data: object, complete: complete }
-  }).then(function (response) {
-    console.log('what is object', object);
-
-    console.log('second complete log');
-  })
-}
 
 
 
-self.logout = function () {
-  console.log('UserService -- logout');
-  $http({
-    method: 'GET',
-    url: '/user/logout'
-  }).then(function (response) {
-    console.log('UserService -- logout -- logged out');
-    $location.path('/home');
-  });
-};
 
 
 

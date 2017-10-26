@@ -53,7 +53,7 @@ router.get('/allListsName', function (req, res) {
 
 //DONE 
 router.get('/getThisListItems/:listName', function (req, res) {
-    // console.log('in getThisListItems on router');
+     console.log('in getThisListItems on router');
     if (req.isAuthenticated()) {
         // console.log('getThisListItems req.body', req.params.listName);
         var listName = { listname: req.params.listName };

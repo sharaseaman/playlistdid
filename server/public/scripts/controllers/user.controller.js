@@ -5,10 +5,12 @@ myApp.controller('UserController', function ($http, $location, UserService) {
 
   vm.showList = false;
 
+
   //DONE // Gets all List Names for homepage /all users
   UserService.getAllListsNames().then(function () {
     // console.log('UserService.allListsName',UserService.allListsName);  
     vm.allListsNames = UserService.allListsName;
+    
   });
 
   //DONE //Gets all List Items for homepage/ all users/inject listname

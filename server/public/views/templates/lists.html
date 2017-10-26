@@ -1,26 +1,27 @@
-<div ng-include="'views/partials/nav.html'" ng-init="lc.getMyLists()"></div>
+<!-- get my lists and the items  -->
+<div ng-include="'views/partials/nav.html'" ng-init="lc.getMyListsNames()"></div>
 
 <h1 id="welcome" class="title">My Lists</h1>
-<hr />
-  <!-- Get My lists        -->
-<div class="block" id="getMyLists">
-    <div class="columns box">        
-  <div class="listBox column" ng-repeat="list in lc.myListsNames">
-   
-    <b>{{list.listname}}</b>
-          <!-- <button ng-click="uc.getThisListItems(list.listname)">Get Items </button> -->
 
-    <div ng-click="uc.getThisListItems(list.listname)" ng-repeat="items in lc.myListsNames" ng-if="list.list_id==item.list_id">
-      <!-- {{items}} -->
-      <!-- <button ng-model="list.checkbox[ $index ]" ng-click="lc.completeTask(items, list.checkbox[ $index ])" ng-checked="list.checkbox[ $index ]">
-          <i class="material-icons">fiber_manual_record</i>
-      </button> -->
-      {{items.itemname}}
-      <input type="checkbox" ng-model="list.checkbox[ $index ]" ng-click="lc.completeTask(items.itemname, list.checkbox[ $index ])" ng-checked="list.checkbox[ $index ]">
-      <!-- {{object}} -->
-    </div>
 
+<!-- Get My lists        -->
+<div class="card is-fluid" id="getAllLists" ng-repeat="list in lc.myListsNames">
+  <header class="card-header select">
+
+    <span class="card-header-title">
+      <h1 id="titleList">
+        <b>{{list.listname}}</b>
+      </h1>
+      <button ng-click="lc.myListItems(list.listname)">Get Items</button>
+
+    </span>
+  </header>
+  <div class="card-content" >
+    <ul class="content" ng-repeat="item in lc.listItems" ng-if='list.list_id==item.list_id'>
+      <!-- <input type="checkbox" ng-model="list.checkbox[ $index ]" ng-click="lc.completeTask(item.itemname, list.checkbox[ $index ])"
+        ng-checked="list.checkbox[ $index ]"> -->
+      <li>{{item.itemname}}</li>
+    </ul>
   </div>
+  <footer class="card-footer"></footer>
 </div>
-
-<!-- 'item.complete' -->
