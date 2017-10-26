@@ -3,7 +3,7 @@
 <h1 id="welcome" class="title">Create New List</h1>
 
 <div class="block box" id="formLayout">
-    <form ng-submit="cc.newList()">
+   <form >   <!--ng-submit="cc.submitNewList()" -->
         <div class="field">
             <div ng-hide='cc.activeList'>
 
@@ -23,16 +23,13 @@
                 <ul ng-repeat="anItem in cc.itemsArray">
                     <li>{{anItem.item}}</li>
                 </ul>
-                <button ng-click='cc.toggleTesty()'>Submit</button>
+                <button ng-click="cc.submitNewList()">Submit</button>
                 
             </div>
         </div>
-
-
        
         <!-- <input class="btn btn-default" type="submit" name="submit" value="Add List" /> -->
 
-
-
     </form>
+    
 </div>

@@ -7,8 +7,10 @@ myApp.service('UserService', function ($http, $location) {
   self.allListsName = {}; //DONE
   // self.newList = {};
   self.listItems = {}; //list of Items for getThisList Items //DONE
+  self.myListsNames = {};
 
- //DONE
+
+  //DONE
   self.getuser = function () {
     // console.log('UserService -- getuser');
     $http({
@@ -56,30 +58,74 @@ myApp.service('UserService', function ($http, $location) {
 
   }
 
-  // IN PROGRESS 
-  // add list from home page to users page //user.router
-  self.saveThisList = function (addListName, addItems) {
-    console.log('saveThisList in service');
-    
-    // console.log('addThisList worked in service', addListName, addItems);
-    $http({
-      method: 'POST',
-      url: '/user',
-      data: { name: addListName, item: addItems}
+  //DONE // displays the names of MyLists
+  self.getMyListsNames = function () {
+    return $http({
+      method: 'GET',
+      url: '/lists/getMyListsNames',
     }).then(function (response) {
-      console.log('i am here');
+      self.myListsNames = response.data;
+      console.log('self.getMyListsNames', self.myListsNames);
     });
   }
-  self.getMyLists = function () {
+
+
+  //change below to get items for the name of MyList
+  self.myListItems = function () {
     console.log('in getLists function on service');
     return $http({
       method: 'GET',
       url: '/lists',
     }).then(function (response) {
-      console.log('Response:', response.data);
+      // console.log('Response:', response.data);
       self.lists = response.data;
     });
   }
+
+  // IN PROGRESS 
+  // add list from home page to users page //user.router
+  self.saveThisList = function (addListName, addItems) {
+    console.log('saveThisList in service');
+
+    // console.log('addThisList worked in service', addListName, addItems);
+    $http({
+      method: 'POST',
+      url: '/user',
+      data: { name: addListName, item: addItems }
+    }).then(function (response) {
+      console.log('i am here');
+    });
+  }
+
+  self.newList = function (obj) {
+    // console.log('new List made it to service', obj);
+
+    $http({
+      method: 'POST',
+      url: '/create',
+      data: obj
+    }).then(function (response1) {
+      // console.log('first post', response1.data);
+
+      var list = response1.data;
+      $http({
+        method: 'POST',
+        url: '/create/insertItems',
+        data: response1.data
+      }).then(function (response2) {
+        // console.log('secont Post', response2.data);
+        // console.log('this is list', list);
+        // console.log('this is response.data', response2.data);
+        $http({
+          method: 'POST',
+          url: 'create/favorites',
+          data: list
+        });
+      });
+    });
+  }
+
+
 }); //end myapp 
 
 
@@ -100,20 +146,7 @@ self.completeTask = function (object, complete) {
   })
 }
 
-self.newList = function (inputName, inputItem) {
-  console.log('new List made it to service', inputName, inputItem);
 
-  $http({
-    method: 'POST',
-    url: '/create',
-    data: {
-      name: inputName,
-      item: [inputItem]
-    }
-  }).then(function (response) {
-    console.log('newList success');
-  });
-}
 
 self.logout = function () {
   console.log('UserService -- logout');
