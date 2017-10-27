@@ -44,8 +44,8 @@ router.post('/insertItems', function (req, res, next) {
         //world of fuck
         for (var i = 0; i < req.body.itemname.length; i++) {
 
-        client.query("INSERT INTO items (itemname,list_id) VALUES ($1, $2);",
-            [req.body.itemname[i].item, req.body.listid],
+        client.query("with rows as(INSERT INTO items (itemname,list_id) VALUES ($1, $2)) INSERT INTO users_lists (users_id,list_id) VALUES ($3,$2);",
+            [req.body.itemname[i].item, req.body.listid, req.user.id],
             function (err, result) {
                 done();
                 if (err) {
