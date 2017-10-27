@@ -55,7 +55,6 @@ router.get('/allListsName', function (req, res) {
 router.get('/getThisListItems/:listName', function (req, res) {
      console.log('in getThisListItems on router');
     if (req.isAuthenticated()) {
-        // console.log('getThisListItems req.body', req.params.listName);
         var listName = { listname: req.params.listName };
         // console.log('listName = ',listName.listname);
         pool.connect(function (connectionError, client, done) {
@@ -92,25 +91,30 @@ router.post('/', function (req, res) {
     if (req.isAuthenticated()) {
         console.log('post request to add list to user');
         pool.connect(function (connectionError, client, done) {
-                // console.log('req.body ->', req.body);
-                // console.log('req.user', req.user.id);
-                var saveList = {
-                    listName: req.body.name,
-                    item: req.body.item,
-                    userId: req.user.id
-                }
-                console.log('this is toDo.item', toDo);
+                console.log('req.body equasdfosls ->', req.body.data[0].list_id);
+                
+                var list_id=req.body.data[0].list_id;
+                console.log('req.user', req.user.id);
+                // var toDo = {
+                //     items_id: req.body.items_id,
+                //     itemname: req.body.itemname,
+                //     list_id:  req.body.list_id,
+                //     listname: req.body.listname,
+                //     user_id: req.body.user_id,
+                // }
+                
+                console.log('this is toDo.item', list_id);
 
                 if (connectionError) {
                     console.log(connectionError);
                     res.sendStatus(501);
                 } else {
-                    var pQuery = 'INSERT INTO items (list_id) VALUES ($1,$2);';
-                    var saveList = [toDo.listName, toDo.userId];
+                    var pQuery = 'INSERT INTO users_lists (list_id,users_id) VALUES ($1,$2);'; 
+                    var listname = [req.body.data[0].list_id,req.user.id];
 
-                    // var toDoArray = [toDo.listName, toDo.item,toDo.userId ];
+                    // // var toDoArray = [toDo.listName, toDo.item,toDo.userId ];
 
-                    client.query(pQuery, toDoArray, function (queryError, resultObj) {
+                    client.query(pQuery, listname, function (queryError, resultObj) {
                         done();
                         if (queryError) {
                             console.log(queryError);

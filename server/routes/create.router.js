@@ -7,16 +7,6 @@ router.post('/', function (req, res, next) {
     if (req.isAuthenticated()) {
     }
     console.log('req.body = is here', req.body);
-
-    // var newList = {
-    //     name: req.body.name,
-    //     item: req.body.item
-    // };
-    // console.log('got it =', req.body);
-    // console.log('current user =', req.user.id);
-    // console.log('req.body.list =', req.body.list);
-    // console.log('item array =', req.body.itemArray[0].item);
-
     pool.connect(function (err, client, done) {
         if (err) {
             console.log("Error connecting: ", err);
@@ -37,9 +27,6 @@ router.post('/', function (req, res, next) {
                         itemname: req.body.itemArray,
                         listid: result.rows[0].list_id
                     }
-                    //world of fuck
-                    // for (var i = 0; i < req.body.itemArray.length; i++) {
-    
                     res.send(obj1);
                 }
             });

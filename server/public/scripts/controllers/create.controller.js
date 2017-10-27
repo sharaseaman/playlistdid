@@ -8,7 +8,7 @@ myApp.controller('CreateController', function ($http, $location, UserService) {
   vm.newList = UserService.newList;
 
   vm.itemsArray = [];
-
+  
   vm.toggleTesty = function(){
     if( vm.activeList ){
         console.log( 'found a testy' );

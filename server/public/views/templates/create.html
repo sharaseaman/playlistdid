@@ -2,30 +2,37 @@
 
 <h1 id="welcome" class="title">Create New List</h1>
 
-<div class="block box" id="formLayout">
+<div class="block" id="formLayout">
    <form >   <!--ng-submit="cc.submitNewList()" -->
-        <div class="field">
-            <div ng-hide='cc.activeList'>
+        <div class="box field">
+            <!-- <div ng-hide='cc.activeList'> -->
 
                 <label class="label is-centered">List Title</label>
                 <input type="text" placeholder="List Name" ng-model="cc.newList.listNameIn">
-                <button ng-click='cc.toggleTesty()'>Enter</button>
-
-            </div>
+                <!-- <button ng-click='cc.toggleTesty()'>Enter</button> -->
+                <br>
+                <br>
+                <h1>{{cc.newList.listNameIn}}</h1>
+            <!-- </div> -->
         </div>
-        <div class="field">
-            <div ng-show='cc.activeList'>
-
+        <div class="box field" >
+            <!-- <div ng-show='cc.activeList'> -->
+                  
+                    
                 <label class="label">List Item:</label>
-                <input type="text" placeholder="Subject" ng-model="cc.newList.itemIn">
+                <input type="text" placeholder="Enter List Item" ng-model="cc.newList.itemIn">
                 <input class="btn btn-default" type="button" name="Add Items" value="Add Item" ng-click="cc.addItems()">
-                <h1>Items:</h1>
+                <br>
+                <br>
+                <h1>Items Added:</h1>
+                <br>
                 <ul ng-repeat="anItem in cc.itemsArray">
                     <li>{{anItem.item}}</li>
                 </ul>
-                <button ng-click="cc.submitNewList()">Submit</button>
+                <br>
+                <button ng-click="cc.submitNewList()">Submit List</button>
                 
-            </div>
+            <!-- </div> -->
         </div>
        
         <!-- <input class="btn btn-default" type="submit" name="submit" value="Add List" /> -->

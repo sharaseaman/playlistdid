@@ -68,7 +68,7 @@ myApp.service('UserService', function ($http, $location) {
   }
 
 
-  //change below to get items for the name of MyList
+  //DONE
   self.myListItems = function (myListName) {
     // console.log('in myListItems function on service');
     return $http({
@@ -84,19 +84,20 @@ myApp.service('UserService', function ($http, $location) {
 
   // IN PROGRESS 
   // add list from home page to users page //user.router
-  self.saveThisList = function (addListName, addItems) {
+  self.saveThisList = function () {
     console.log('saveThisList in service');
 
     // console.log('addThisList worked in service', addListName, addItems);
     $http({
       method: 'POST',
       url: '/user',
-      data: { name: addListName, item: addItems }
+      data: {data: self.listItems}
     }).then(function (response) {
       console.log('i am here');
     });
   }
 
+//DONE 
   self.newList = function (obj) {
     // console.log('new List made it to service', obj);
 
@@ -124,6 +125,9 @@ myApp.service('UserService', function ($http, $location) {
       });
     });
   }
+
+
+  //IN Progress
   self.completeTask = function (object, complete) {
     console.log('completeTask function called', object, complete);
     $http({
@@ -136,6 +140,8 @@ myApp.service('UserService', function ($http, $location) {
       console.log('second complete log');
     })
   }
+
+
   self.logout = function () {
     console.log('UserService -- logout');
     $http({

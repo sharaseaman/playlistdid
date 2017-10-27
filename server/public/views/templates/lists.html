@@ -1,9 +1,9 @@
 <!-- get my lists and the items  -->
 <div ng-include="'views/partials/nav.html'" ng-init="lc.getMyListsNames()"></div>
 
+
+
 <h1 id="welcome" class="title">My Lists</h1>
-
-
 <!-- Get My lists        -->
 <div class="card is-fluid" id="getAllLists" ng-repeat="list in lc.myListsNames">
   <header class="card-header select">
@@ -13,15 +13,15 @@
         <b>{{list.listname}}</b>
       </h1>
       <button ng-click="lc.myListItems(list.listname)">Get Items</button>
-
+      
     </span>
   </header>
   <div class="card-content" >
-    <ul class="content" ng-repeat="item in lc.listItems" ng-if='list.list_id==item.list_id'>
-      <!-- <input type="checkbox" ng-model="list.checkbox[ $index ]" ng-click="lc.completeTask(item.itemname, list.checkbox[ $index ])"
-        ng-checked="list.checkbox[ $index ]"> -->
-      <li>{{item.itemname}}</li>
-    </ul>
+    <div class="content" ng-repeat="item in lc.listItems" ng-if='list.list_id==item.list_id'>
+        {{item.itemname}}
+      <input type="checkbox" ng-model="item.checkbox" ng-click="lc.completeTask(item.itemname, item.checkbox)" ng-checked="item.checkbox"></input>
+     
+    </div>
   </div>
   <footer class="card-footer"></footer>
 </div>

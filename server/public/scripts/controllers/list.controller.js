@@ -2,14 +2,15 @@ myApp.controller('ListController', function ($http, $location, UserService) {
     // console.log('ListController created');
     var vm = this;
 
-    var lists = UserService.lists;
+    // var lists = UserService.lists;
     vm.user = {};
     vm.userObject = UserService.userObject;
 
 
     //DONE
     UserService.getMyListsNames().then(function () {
-        // console.log('getMyListsNames');
+        // 
+        console.log('getMyListsNames');
         vm.myListsNames = UserService.myListsNames;
         console.log('vm.myListsNames', vm.myListsNames);
     });
@@ -19,7 +20,7 @@ myApp.controller('ListController', function ($http, $location, UserService) {
     vm.myListItems = function(myListName){
     UserService.myListItems(myListName).then(function () {
         vm.listItems = UserService.listItems;
-        console.log('vm.myListItems', vm.listItems );
+        console.log('vm.listItems', vm.listItems );
         
     });
 

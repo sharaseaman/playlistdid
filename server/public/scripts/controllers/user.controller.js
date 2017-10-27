@@ -27,9 +27,9 @@ myApp.controller('UserController', function ($http, $location, UserService) {
 
   }
 //in progress // click save to add to MYlist page
-  vm.saveThisList = function (addListName, addItems) {
+  vm.saveThisList = function () {
 
-    UserService.saveThisList(addListName, addItems);
+    UserService.saveThisList();
     console.log('saveThisList in controller');
   }
 
