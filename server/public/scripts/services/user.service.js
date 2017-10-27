@@ -121,7 +121,11 @@ myApp.service('UserService', function ($http, $location) {
           method: 'POST',
           url: 'create/favorites',
           data: list
-        });
+        }.then(swal(
+          'Success',
+          'List Added!',
+          'success'
+        )));
       });
     });
   }
