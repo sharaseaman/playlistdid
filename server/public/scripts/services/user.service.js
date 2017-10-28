@@ -92,10 +92,13 @@ myApp.service('UserService', function ($http, $location) {
       method: 'POST',
       url: '/user',
       data: {data: self.listItems}
-    }).then(function (response) {
-      console.log('i am here');
-    });
+    }).then(swal(
+      'Success',
+      'List Added!',
+      'success'
+    ));
   }
+  
 
 //DONE 
   self.newList = function (obj) {
