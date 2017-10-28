@@ -39,26 +39,33 @@ router.post('/insertItems', function (req, res, next) {
         if (err) {
             console.log("Error connecting: ", err);
             res.sendStatus(500);
-        }
-
-        //world of fuck
-        for (var i = 0; i < req.body.itemname.length; i++) {
-
-        client.query("with rows as(INSERT INTO items (itemname,list_id) VALUES ($1, $2)) INSERT INTO users_lists (users_id,list_id) VALUES ($3,$2);",
-            [req.body.itemname[i].item, req.body.listid, req.user.id],
+        } else {
+        client.query("INSERT INTO users_lists (users_id,list_id) VALUES ($2,$1);",
+            [req.body.listid, req.user.id],
             function (err, result) {
                 done();
                 if (err) {
                     console.log("Error inserting data: ", err);
                     res.sendStatus(500);
                 } else {
+                    for (var i = 0; i < req.body.itemname.length; i++) {
+                                client.query("INSERT INTO items (itemname,list_id) VALUES ($1, $2);",
+                                    [req.body.itemname[i].item, req.body.listid],
+                                    function (err, result) {
+                                        done();
+                                        if (err) {
+                                            console.log("Error inserting data: ", err);
+                                            res.sendStatus(500);
+                                        } else {
+                                        }
+                                    });
+                                } 
                 }
             });
         } 
         res.send(req.body);
-        
-    });
-});
+    }); //end of pool connect
+}); //end route
 
 router.post('/favorites',function(req, res, next){
     console.log('in favorites create router',req.body);
