@@ -2,7 +2,7 @@ myApp.controller('UserController', function ($http, $location, UserService) {
   // console.log('UserController created');
   var vm = this;
   vm.userObject = UserService.userObject;
-
+  vm.userService = UserService;
   vm.showList = false;
 
 
@@ -18,17 +18,10 @@ myApp.controller('UserController', function ($http, $location, UserService) {
     UserService.getThisListItems(listName).then(function () {
       console.log(' UserService.listItems', UserService.listItems);
       vm.listItems = UserService.listItems;
-
     });
-
-    // UserService.listItems;
-    // console.log('vm.getThisListItems', vm.listItems);
-
-
   }
-//in progress // click save to add to MYlist page
-  vm.saveThisList = function () {
 
+  vm.saveThisList = function () {
     UserService.saveThisList();
     console.log('saveThisList in controller');
   }

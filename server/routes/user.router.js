@@ -91,17 +91,12 @@ router.post('/', function (req, res) {
     if (req.isAuthenticated()) {
         console.log('post request to add list to user');
         pool.connect(function (connectionError, client, done) {
-                console.log('req.body equasdfosls ->', req.body.data[0].list_id);
+                console.log('req.body is this', req.body);
+                
+                // console.log('req.body equasdfosls ->', req.body.data[0].list_id);
                 
                 var list_id=req.body.data[0].list_id;
-                console.log('req.user', req.user.id);
-                // var toDo = {
-                //     items_id: req.body.items_id,
-                //     itemname: req.body.itemname,
-                //     list_id:  req.body.list_id,
-                //     listname: req.body.listname,
-                //     user_id: req.body.user_id,
-                // }
+                console.log('req.user', req.user.id);            
                 
                 console.log('this is toDo.item', list_id);
 

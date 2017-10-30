@@ -86,17 +86,16 @@ myApp.service('UserService', function ($http, $location) {
   // add list from home page to users page //user.router
   self.saveThisList = function () {
     console.log('saveThisList in service');
-
+    console.log('self.listItems',self.listItems);
+    
     // console.log('addThisList worked in service', addListName, addItems);
     $http({
       method: 'POST',
       url: '/user',
       data: {data: self.listItems}
-    }).then(swal(
-      'Success',
-      'List Added!',
-      'success'
-    ));
+    }).then(function (response) {
+      console.log('i am here');
+    });
   }
   
 
