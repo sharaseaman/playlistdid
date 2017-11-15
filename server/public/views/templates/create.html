@@ -28,22 +28,20 @@
             <input class="button" type="submit" name="Add Items" value="Add Item" ng-click="cc.addItems()">
             <br>
             <br>
-            <div class="level-item">
-                    
-                    <div ng-repeat="anItem in cc.itemsArray">
-                        <input type="checkbox"> {{anItem.item}}
-                        <br>
-                    </div>
+            <div >
+                <ul class="level-item addItems" ng-repeat="anItem in cc.itemsArray">
+                    <li> <input type="checkbox"> {{anItem.item}} </li> 
+                </ul>
+
+
             </div>
-            <br>
-            <div class="level-right">
-                <button class="button is-dark" ng-click="cc.submitNewList()">Submit List</button>
-            </div>
-            <!-- </div> -->
+        </div>
+        <br>
+        <div class="level-right">
+            <button class="button is-dark" ng-click="cc.submitNewList()">Submit List</button>
         </div>
 
-        <!-- <input class="btn btn-default" type="submit" name="submit" value="Add List" /> -->
-
     </form>
-
 </div>
+
+<!-- <input class="btn btn-default" type="submit" name="submit" value="Add List" /> -->

@@ -7,6 +7,8 @@ router.post('/', function (req, res, next) {
     if (req.isAuthenticated()) {
     }
     console.log('req.body = is here', req.body);
+    console.log('what is next', next);
+    
     pool.connect(function (err, client, done) {
         if (err) {
             console.log("Error connecting: ", err);

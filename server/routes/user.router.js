@@ -95,7 +95,7 @@ router.post('/', function (req, res) {
                 
                 // console.log('req.body equasdfosls ->', req.body.data[0].list_id);
                 
-                var list_id=req.body.data[0].list_id;
+                var list_id=req.body.data;
                 console.log('req.user', req.user.id);            
                 
                 console.log('this is toDo.item', list_id);
@@ -105,7 +105,7 @@ router.post('/', function (req, res) {
                     res.sendStatus(501);
                 } else {
                     var pQuery = 'INSERT INTO users_lists (list_id,users_id) VALUES ($1,$2);'; 
-                    var listname = [req.body.data[0].list_id,req.user.id];
+                    var listname = [req.body.data,req.user.id];
 
                     // // var toDoArray = [toDo.listName, toDo.item,toDo.userId ];
 
