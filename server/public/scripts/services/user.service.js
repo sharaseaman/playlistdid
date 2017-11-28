@@ -95,7 +95,7 @@ myApp.service('UserService', function ($http, $location) {
       data: {data: listId}
     }).then(swal(
       'Success',
-      'List Added!',
+      'List Saved to your My Lists page!',
       'success'
     ));
   };
@@ -130,7 +130,7 @@ myApp.service('UserService', function ($http, $location) {
           data: list
         }.then(swal(
           'Success',
-          'List Added!',
+          'List Added, you can now find it on your My Lists page!',
           'success'
         )));
       });
