@@ -1,7 +1,9 @@
 <div ng-include="'views/partials/nav.html'" ng-init=uc.getAllLists()></div>
 
 <h1 id="welcome" class="title">Create New List</h1>
-
+<div class="nav-right">
+        <button class="button is-light is small nav-item" ng-click="cc.userService.logout()">Log Out</button>
+    </div>
 <div class="block" id="formLayout">
     <form>
         <!--ng-submit="cc.submitNewList()" -->

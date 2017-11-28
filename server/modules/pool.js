@@ -13,7 +13,7 @@ if (process.env.DATABASE_URL) {
   // https://github.com/brianc/node-pg-pool
   var params = url.parse(process.env.DATABASE_URL);
   var auth = params.auth.split(':');
-
+  connectionString = process.env.DATABASE_URL + "?ssl=true";
   config = {
     user: auth[0],
     password: auth[1],
@@ -23,6 +23,7 @@ if (process.env.DATABASE_URL) {
     ssl: true, // heroku requires ssl to be true
     max: 10, // max number of clients in the pool
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+  
   };
 
 } else {
@@ -36,5 +37,6 @@ if (process.env.DATABASE_URL) {
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
   };
 }
+
 
 module.exports = new pg.Pool(config);

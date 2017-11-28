@@ -3,7 +3,9 @@
 
 <h1 id="welcome" class="title">Welcome {{uc.userObject.userName}}!</h1>
 <h1 id="welcome" class="title">Find Your Adventure</h1>
-
+<div class="nav-right">
+    <button class="button is-light is small nav-item" ng-click="uc.userService.logout()">Log Out</button>
+</div>
 <!-- Get all lists -->
 <div class="">
   <div class="columns is-multiline block">
