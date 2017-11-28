@@ -6,12 +6,10 @@ var pool = require('../modules/pool.js');
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function (req, res) {
     if (req.isAuthenticated()) {
-        // console.log('req.user', req.user);
         var userInfo = {
             username: req.user.username,
             usersid: req.user.id
         };
-        // console.log('user info inside user route sending back to service', userInfo)
         res.send(userInfo);
     } else {
         res.send(false);
@@ -19,9 +17,7 @@ router.get('/', function (req, res) {
 });
 //DONE
 router.get('/allListsName', function (req, res) {
-    // console.log('in allListsName router');
     if (req.isAuthenticated()) {
-        // console.log('logged in', req.user);
         pool.connect(function (connectionError, client, done) {
             if (connectionError) {
                 console.log(connectionError);
@@ -35,10 +31,7 @@ router.get('/allListsName', function (req, res) {
                         console.log(queryError);
                         res.sendStatus(501);
                     } else {
-                        //   console.log('list router resultObj.rows', resultObj.rows);
                         res.send(resultObj.rows);
-                        // console.log('resultObj.rows = ',resultObj.rows);
-
                     }
                 })
             }
@@ -53,10 +46,8 @@ router.get('/allListsName', function (req, res) {
 
 //DONE 
 router.get('/getThisListItems/:listName', function (req, res) {
-     console.log('in getThisListItems on router');
     if (req.isAuthenticated()) {
         var listName = { listname: req.params.listName };
-        // console.log('listName = ',listName.listname);
         pool.connect(function (connectionError, client, done) {
             if (connectionError) {
                 console.log(connectionError);
@@ -70,9 +61,7 @@ router.get('/getThisListItems/:listName', function (req, res) {
                         console.log(queryError);
                         res.sendStatus(501);
                     } else {
-                        //   console.log('list router resultObj.rows', resultObj.rows);
                         res.send(resultObj.rows);
-                        // console.log('getThisListItems resultObj.rows =',resultObj.rows);
                     }
                 })
             }
@@ -91,6 +80,7 @@ router.post('/', function (req, res) {
     if (req.isAuthenticated()) {
         console.log('post request to add list to user');
         pool.connect(function (connectionError, client, done) {
+              
                 console.log('req.body is this', req.body);
                 
                 // console.log('req.body equasdfosls ->', req.body.data[0].list_id);

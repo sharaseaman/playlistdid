@@ -6,7 +6,6 @@ var pool = require('../modules/pool.js');
 router.get('/getMyListsNames', function (req, res) {
     console.log('in getMyListsNames route');
     if (req.isAuthenticated()) {
-        // console.log('logged in', req.user);        
         pool.connect(function (connectionError, client, done) {
             if (connectionError) {
                 console.log(connectionError);
@@ -22,8 +21,6 @@ router.get('/getMyListsNames', function (req, res) {
                         res.sendStatus(501);
                     } else {
                         res.send(resultObj.rows);
-                        console.log('get my listnames return from db', resultObj.rows);
-
                     }
                 })
             }
@@ -32,14 +29,12 @@ router.get('/getMyListsNames', function (req, res) {
     else {
         console.log('not logged in');
         res.send(false);
-
     }
 });
 
 // DONE //
 
 router.get('/:myListName', function (req, res) {
-    console.log('in router/get on list route');
     if (req.isAuthenticated()) {
         // console.log('logged in', req.user);
         var myListName = { listname: req.params.myListName };
@@ -58,10 +53,7 @@ router.get('/:myListName', function (req, res) {
                         console.log(queryError);
                         res.sendStatus(501);
                     } else {
-                        console.log('list router resultObj.rows', resultObj.rows);
                         res.send(resultObj.rows);
-                        console.log('getMyList return from db', resultObj.rows);
-
                     }
                 })
             }
@@ -78,22 +70,19 @@ router.get('/:myListName', function (req, res) {
 router.put('/', function (req, res) {
     if (req.isAuthenticated()) {
         pool.connect(function (connectionError, client, done) {
-            console.log('req.body ->', req.body);
             var flower = req.body;
 
             if (connectionError) {
                 console.log(connectionError);
                 res.sendStatus(501);
             } else {
-                // console.log('i am here');
-
                 var pQuery = 'SELECT items_id FROM items WHERE itemname=$1';
                
                 var valueArray = [flower.data];
 
                 client.query(pQuery, valueArray, function (queryError, resultObj) {
                     done();
-                     console.log('this is reusltObj',resultObj.rows[0].items_id);
+                     console.log('this is reusltObj list/put',resultObj.rows[0].items_id);
 
                     if (queryError) {
                         console.log(queryError);
