@@ -1,27 +1,39 @@
 <!-- get my lists and the items  -->
+<div class="background">
 <div ng-include="'views/partials/nav.html'" ng-init="lc.getMyListsNames()"></div>
 
-
-
 <h1 id="welcome" class="title">My Lists</h1>
-<!-- Get My lists        -->
-<div class="card is-fluid" id="getAllLists" ng-repeat="list in lc.myListsNames">
-  <header class="card-header select">
 
-    <span class="card-header-title">
-      <h1 id="titleList">
-        <b>{{list.listname}}</b>
-      </h1>
-      <button ng-click="lc.myListItems(list.listname)">Get Items</button>
-      
-    </span>
-  </header>
-  <div class="card-content" >
-    <div class="content" ng-repeat="item in lc.listItems" ng-if='list.list_id==item.list_id'>
-        {{item.itemname}}
-      <input type="checkbox" ng-model="item.checkbox" ng-click="lc.completeTask(item.itemname, item.checkbox)" ng-checked="item.checkbox"></input>
-     
-    </div>
-  </div>
-  <footer class="card-footer"></footer>
-</div>
+
+<!-- Get My lists        -->
+<div class="">
+  <div class="columns is-multiline block">
+    
+    <div class="column is-one-quarter box" id="getAllLists" ng-repeat="list in lc.myListsNames">
+      <header class="card-header">
+
+        <span class="card-header-title">
+          <h1 id="titleList">
+            <b>{{list.listname}}</b>
+          </h1>
+
+          <button class="button is-white" ng-click="lc.myListItems(list.listname)">
+            <i class="material-icons">arrow_drop_down</i>
+          </button>
+
+        </span>
+
+        <a href="#" class="card-header-icon" aria-label="more options"></a>
+      </header>
+    <div>
+        <div ng-repeat="item in lc.listItems" ng-if='list.list_id==item.list_id'>
+          <input type="checkbox" ng-model="item.checkbox" ng-click="lc.completeTask(item.itemname, item.checkbox)" ng-checked="item.checkbox">
+          {{item.itemname}}             
+          
+        
+      </div>
+      </div>
+     </div> 
+  </div> <!--end of columns -->
+ </div> <!--end of empty -->
+ </div>

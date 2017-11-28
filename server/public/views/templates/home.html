@@ -1,18 +1,30 @@
-<div class="container">
-  <h1 class="lead">Login</h1>
-    <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
-    <form ng-submit="lc.login()">
-      <div>
-          <label for="username">Username:</label>
-          <input type="text" ng-model="lc.user.username" />
-      </div>
-      <div>
-          <label for="password">Password:</label>
-          <input type="password" ng-model="lc.user.password" />
-      </div>
-      <div>
-          <input class="btn btn-default" type="submit" name="submit" value="Log In" />
-          <a href="#register">Register</a>
-      </div>
-    </form>
+<div class="tile is-ancestor" id="login">
+    <div class="tile is-parent">
+            <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h1>
+            
+        <div class="form">
+            <form ng-submit="lc.login()">
+                <div>
+                    <p>
+                        <b>Login</b>
+                    </p>
+                </div>
+                <div class="subtitle">
+                    <label for="username">Username:</label>
+                    <input type="text" ng-model="lc.user.username" />
+                </div>
+                <div class="subtitle">
+                    <label for="password">Password:</label>
+                    <input type="password" ng-model="lc.user.password" />
+                </div>
+                <div>
+                    <input class="btn btn-default" type="submit" name="submit" value="Log In" />
+                    <a class="link" href="#register">Register</a>
+                </div>
+            </form>
+        </div>
+        <figure class="image is 9x9">
+            <img src="/img/wordart.png">
+        </figure>
+    </div>
 </div>

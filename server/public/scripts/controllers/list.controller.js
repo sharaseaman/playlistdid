@@ -1,7 +1,8 @@
 myApp.controller('ListController', function ($http, $location, UserService) {
     // console.log('ListController created');
     var vm = this;
-
+    vm.userService = UserService;
+    
     // var lists = UserService.lists;
     vm.user = {};
     vm.userObject = UserService.userObject;

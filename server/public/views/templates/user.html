@@ -5,25 +5,34 @@
 <h1 id="welcome" class="title">Find Your Adventure</h1>
 
 <!-- Get all lists -->
-<div class="block">
-  <div class="columns">
+<div class="">
+  <div class="columns is-multiline block">
 
-<div class="column is-multiline" id="getAllLists" ng-repeat="list in uc.allListsNames">
-  <header class="card-header">
+    <div class="column is-one-quarter box" id="getAllLists" ng-repeat="list in uc.allListsNames">
+      <header class="card-header">
 
-    <span class="card-header-title">
-      <h1 id="titleList"><b>{{list.listname}}</b></h1>
-      <button class="button is-white" ng-click="uc.getThisListItems(list.listname)"><i class="material-icons">arrow_drop_down</i></button>
-      
-    </span>
-    <a href="#" class="card-header-icon" aria-label="more options"></a>
-  </header>
-  <div class="card-content">
-    <ul class="content" ng-repeat="item in uc.listItems" ng-if='list.list_id==item.list_id'>
-      <li> {{item.itemname}} </li>
-    </ul>
+        <span class="card-header-title">
+          <h1 id="titleList">
+            <b>{{list.listname}}</b>
+          </h1>
+
+          <button class="button is-white" ng-click="uc.getThisListItems(list.listname)">
+            <i class="material-icons">arrow_drop_down</i>
+          </button>
+
+        </span>
+
+      </header>
+      <div class="card-content">
+        <div class="content" ng-repeat="item in uc.listItems" ng-if='list.list_id==item.list_id'>
+           {{item.itemname}}
+           
+        </div>
+        <button class="is-left button is-small" ng-click="uc.saveThisList(list.list_id)">Save List</button>
+        
+      </div>
+    </div>
   </div>
-     <div class="card-footer-item is-left button" ng-click="uc.saveThisList()">Save List</div>
+  <!--end columns -->
 </div>
-  </div> <!--end columns -->
-</div> <!--end block -->
+<!--end block -->

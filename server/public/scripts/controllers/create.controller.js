@@ -22,13 +22,11 @@ myApp.controller('CreateController', function ($http, $location, UserService) {
         }
     }
 }
-
   vm.newList = function () {
     console.log('newList controller function');
     console.log('ListTitle =', vm.newList.listNameIn);
     // UserService.newList(vm.newList.listNameIn, vm.itemsArray);
     console.log('purple rain =', vm.itemsArray);
-
   }
 
   vm.addItems = function () {

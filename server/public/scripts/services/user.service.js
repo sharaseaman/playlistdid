@@ -37,7 +37,7 @@ myApp.service('UserService', function ($http, $location) {
     }).then(function (response) {
       //  console.log('Response:', response.data);
       self.allListsName = response.data;
-      // console.log('response.data =', response.data);
+      console.log('response.data =', response.data);
       //  console.log('self.allListsName', self.allListsName);
     });
   }
@@ -84,18 +84,25 @@ myApp.service('UserService', function ($http, $location) {
 
   // IN PROGRESS 
   // add list from home page to users page //user.router
-  self.saveThisList = function () {
-    console.log('saveThisList in service');
-
+  self.saveThisList = function (listId) {
+    console.log('saveThisList in service -> ', listId);
+    console.log('self.listItems',self.listItems);
+    
     // console.log('addThisList worked in service', addListName, addItems);
     $http({
       method: 'POST',
       url: '/user',
-      data: {data: self.listItems}
-    }).then(function (response) {
-      console.log('i am here');
-    });
-  }
+      data: {data: listId}
+    }).then(swal(
+      'Success',
+      'List Saved to your My Lists page!',
+      'success'
+    ));
+  };
+
+
+
+  
 
 //DONE 
   self.newList = function (obj) {
@@ -123,7 +130,7 @@ myApp.service('UserService', function ($http, $location) {
           data: list
         }.then(swal(
           'Success',
-          'List Added!',
+          'List Added, you can now find it on your My Lists page!',
           'success'
         )));
       });

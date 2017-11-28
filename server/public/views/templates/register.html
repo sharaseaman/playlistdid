@@ -1,17 +1,26 @@
-<div class="container">
-  <h1 class="lead">Register User</h1>
-  <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
-  <form ng-submit="lc.registerUser()">
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" ng-model="lc.user.username" />
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" ng-model="lc.user.password" />
-    </div>
-    <input class="btn btn-default" type="submit" name="submit" value="Register" />
-    <a href="#home">Cancel</a>
-  </form>
+<div class="tile is-ancestor" id="login">
+  <div class="tile is-parent">
+    <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
+      
+      <div class="form">
+        <form ng-submit="lc.registerUser()()">
+          <div>
+            <p>
+              <b>Login</b>
+            </p>
+          </div>
+          <div class="subtitle">
+            <label for="username">Username:</label>
+            <input type="text" ng-model="lc.user.username" />
+          </div>
+          <div class="subtitle">
+            <label for="password">Password:</label>
+            <input type="password" ng-model="lc.user.password" />
+          </div>
+          <div>
+          <input class="btn btn-default" type="submit" name="submit" value="Register" />
+          <a class="link" href="#home">Cancel</a>
+        </div>
+        </form>
 
-</div>
+      </div>
