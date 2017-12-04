@@ -5,12 +5,12 @@ Users are able to create lists of things to do that interest them. They can brow
 
 ## Built With
 
--PostgreSQL
--Express.js
--AngularJS
--Node.js
--Bulma
--Passport
+- PostgreSQL
+- Express.js
+- AngularJS
+- Node.js
+- Bulma
+- Passport
 
 ## Getting Started
 
