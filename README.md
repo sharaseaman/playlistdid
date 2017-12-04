@@ -1,10 +1,16 @@
-# Name of Project
+# PlayList
 
-One Paragraph of project description goes here. Link to the live version of the app if it's hosted on Heroku.
+PlayList is an application designed to inspire users to get out and PLAY
+Users are able to create lists of things to do that interest them. They can browse lists that other users have created and add them if interested. Users can check completed items off the list once that item is complete. 
 
 ## Built With
 
-List technologies and frameworks here
+-PostgreSQL
+-Express.js
+-AngularJS
+-Node.js
+-Bulma
+-Passport
 
 ## Getting Started
 
@@ -57,9 +63,5 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* Name of author(s)
+* Shara Seaman
 
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
